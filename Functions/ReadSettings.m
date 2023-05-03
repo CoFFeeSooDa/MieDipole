@@ -83,30 +83,56 @@ if strcmp(Settings.BC,'coreshell') == 1
     end
 end
 
-% Size comparison
-if strcmp(Settings.BC,'sphere') == 1
-    [msize, mind] = max([size(lambda0,1),size(lambda1,1)]);
-    nr = zeros(msize,2);
-    if mind == 1
-        lambda = lambda0; % unit: m
-    elseif mind == 2
-        lambda = lambda1; % unit: m
+% Post-Processing for Different Mode
+if strcmp(Settings.ModeName,'wavelength') == 1
+    if strcmp(Settings.BC,'sphere') == 1
+        [msize, mind] = max([size(lambda0,1),size(lambda1,1)]);
+        nr = zeros(msize,2);
+        if mind == 1
+            lambda = lambda0; % unit: m
+        elseif mind == 2
+            lambda = lambda1; % unit: m
+        end
+        nr(:,1) = sqrt(Interpolation(lambda,lambda0,epsi0));
+        nr(:,2) = sqrt(Interpolation(lambda,lambda1,epsi1));
+    elseif strcmp(Settings.BC,'coreshell') == 1
+        [msize, mind] = max([size(lambda0,1),size(lambda1,1),size(lambda2,1)]);
+        nr = zeros(msize,3);
+        if mind == 1
+            lambda = lambda0; % unit: m
+        elseif mind == 2
+            lambda = lambda1; % unit: m
+        elseif mind == 3
+            lambda = lambda2; % unit: m
+        end
+        nr(:,1) = sqrt(Interpolation(lambda,lambda0,epsi0));
+        nr(:,2) = sqrt(Interpolation(lambda,lambda1,epsi1));
+        nr(:,3) = sqrt(Interpolation(lambda,lambda2,epsi2));
     end
-    nr(:,1) = sqrt(Interpolation(lambda,lambda0,epsi0));
-    nr(:,2) = sqrt(Interpolation(lambda,lambda1,epsi1));
-elseif strcmp(Settings.BC,'coreshell') == 1
-    [msize, mind] = max([size(lambda0,1),size(lambda1,1),size(lambda2,1)]);
-    nr = zeros(msize,3);
-    if mind == 1
-        lambda = lambda0; % unit: m
-    elseif mind == 2
-        lambda = lambda1; % unit: m
-    elseif mind == 3
-        lambda = lambda2; % unit: m
+elseif strcmp(Settings.ModeName,'angle') == 1
+    Theta_num = abs(tmp_set.Theta_f - tmp_set.Theta_i)/tmp_set.ThetaResol + 1;
+    R = tmp_set.Ar*ones(1,Theta_num);
+    Theta = pi*linspace(tmp_set.Theta_i,tmp_set.Theta_f,Theta_num)/180;
+    Phi = tmp_set.Phi*ones(1,Theta_num);
+    Settings.APos.Cart = [tmp_set.Ar*sin(Theta)*cos(tmp_set.Phi);...
+                          tmp_set.Ar*sin(Theta)*sin(tmp_set.Phi);...
+                          tmp_set.Ar*cos(Theta)];
+    Settings.APos.Sph = [R;Theta;Phi];
+    if tmp_set.lambda_i == tmp_set.lambda_f
+        lambda = tmp_set.lambda_i;
+    else
+        disp("The initial wavelength isn't equal to the final wavelength.");
     end
-    nr(:,1) = sqrt(Interpolation(lambda,lambda0,epsi0));
-    nr(:,2) = sqrt(Interpolation(lambda,lambda1,epsi1));
-    nr(:,3) = sqrt(Interpolation(lambda,lambda2,epsi2));
+    if strcmp(Settings.BC,'sphere') == 1
+        nr = zeros(1,2);
+        nr(1) = sqrt(Interpolation(lambda,lambda0,epsi0));
+        nr(2) = sqrt(Interpolation(lambda,lambda1,epsi1));
+    elseif strcmp(Settings.BC,'coreshell') == 1
+        nr = zeros(1,3);
+        nr(1) = sqrt(Interpolation(lambda,lambda0,epsi0));
+        nr(2) = sqrt(Interpolation(lambda,lambda1,epsi1));
+        nr(3) = sqrt(Interpolation(lambda,lambda2,epsi2));
+    end
 end
 
 
