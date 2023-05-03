@@ -17,10 +17,12 @@
 % Clean the Workspace
 clear
 % Set the Temperary Path
-addpath('./Functions/');
+addpath('./Functions/');												
 % File to be Calculated
-FilePath = './InputFiles/'; % Folder Path of Input Files
-FileName = 'Demo_WavelengthMode_CF_PCRET'; % File Name (without filename extension)
+FilePath = './InputFile/'; % Folder Path of Input Files
+FileName = 'Demo_AngleMode_CF'; % File Name
+
+
 % Output Figure Size (value = 0~1)
 Resize = 1;
 
@@ -35,10 +37,19 @@ dispstat(sprintf('Beginning the program...'),'keepthis','timestamp');
 Inputfile = ReadSettings(append(FilePath,FileName,'.json'));
 Settings = Inputfile.Settings;
 fplot = Inputfile.fplot;
-k0 = Inputfile.Settings.k0;
-k0s = Inputfile.Settings.k0s;
-lambda = Inputfile.Settings.lambda;
-nr = Inputfile.Settings.nr;
+if strcmp(Settings.ModeName,'wavelength') == 1
+    k0 = Inputfile.Settings.k0;
+    k0s = Inputfile.Settings.k0s;
+    lambda = Inputfile.Settings.lambda;
+    nr = Inputfile.Settings.nr;
+elseif strcmp(Settings.ModeName,'angle') == 1
+    Ar = Settings.APos.Sph(1,1);
+    Atheta = Settings.APos.Sph(2,:);
+    Aphi = Settings.APos.Sph(3,1);
+    Ax = Settings.APos.Cart(1,:);
+    Ay = Settings.APos.Cart(2,:);
+    Az = Settings.APos.Cart(3,:);
+end
 % -----------------------
 % Information of the Input File
 dispstat(append('The file is imported:'),'keepthis','timestamp');
@@ -217,7 +228,7 @@ elseif strcmp(Settings.ModeName,'angle') == 1
         else
             Output = TwoGR1(Settings);
         end
-        Etot(ii,:) = transpose(Output.G);
+        Etot(ii,:) = transpose(Output.Etot);
         Edip(ii,:) = transpose(Output.Edip);
         % Information
         dispstat(sprintf('Progress: %.2f%%',(ii/Settings.nn)*100),'timestamp');
