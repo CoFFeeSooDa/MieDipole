@@ -19,8 +19,8 @@ clear
 % Set the Temperary Path
 addpath('./Functions/');												
 % File to be Calculated
-FilePath = './InputFile/'; % Folder Path of Input Files
-FileName = 'Demo_AngleMode_CF'; % File Name
+FilePath = './InputFiles/'; % Folder Path of Input Files
+FileName = 'Demo_WavelengthMode_CF_PCRET'; % File Name
 
 
 % Output Figure Size (value = 0~1)

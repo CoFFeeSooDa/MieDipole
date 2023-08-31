@@ -25,7 +25,7 @@
 	  "lambda_f"   : 405e-9,
 	  "epsi0"	   : 1,
 	  "epsi1"	   : 4,
-	  "epsi2"	   : ".\\InputFile\\Ag_JPCL",
+	  "epsi2"	   : ".\\InputFiles\\DielectricFunctions\\Ag_JPCL",
 	  "ThetaResol" : 1,
 	  "Theta_i"    : 5,
 	  "Theta_f"    : 180,
