@@ -11,11 +11,7 @@ function rsph = C2S(rcart)
     % Assigning Polar Angle when r = 0
     theta(not(any(r,1))) = 0;
     % Azimuthal Angle
-    phi = atan(y./x);
-    % Assigning Azimuthal Angle when x = 0 and y = 0
-    phi(and(not(any(y,1)),not(any(x,1)))) = 0;
-    % Assigning Azimuthal Angle when x < 0
-    phi(and(x<0,any(y,1))) = pi;
+    phi = atan2(y,x);
     % Column Form
     rsph = [r;theta;phi];
 end
