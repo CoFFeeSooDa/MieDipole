@@ -61,7 +61,7 @@ else
     error_msg = True;
 end
 if isfield(tmp_set,'epsi1') == 1
-    if ischar(tmp_set.epsi0) == 1
+    if ischar(tmp_set.epsi1) == 1
         [lambda1, epsi1] = ReadDielectricFunction(tmp_set.epsi1);
     else
         lambda1 = 0; epsi1 = tmp_set.epsi1;
