@@ -22,11 +22,11 @@ This repository contains:
 
 ## Installation and Usage
 
-1. To use this code, you can either download the zipped file or clone the repository (you need to install git).
+1. To use this code, you can either download the zipped file or clone the repository (you need to install Git in your PC first).
 ```sh
-git clone https://github.com/CoFFeeSooDa/StarTrackerTest.git
+git clone https://github.com/CoFFeeSooDa/MieDipole.git
 ```
-2. After the download, the script in ./catalogs/tycho2/combine.py should be run frist if you choose Tycho-2 as your star catalog.
+2. After the download, you can start a calculation in MATLAB (2016a and after is recommended).
 Also, the Hipparcos catalog is also available in the catalog directory. (pending)
 
 3. In the current version, the required files have been saved in the corresponding directory. In other words, you can run [MyTest_Tetra3_xyls.py](https://github.com/CoFFeeSooDa/StarTrackerTest/blob/main/MyTest_Tetra3_xyls.py) directly to test tetra3.
