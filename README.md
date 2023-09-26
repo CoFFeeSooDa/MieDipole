@@ -13,7 +13,7 @@ This repository contains:
 ## Table of Contents
 
 - [Installation and Usage](#Installation-and-Usage)
-	- [About MyTest_Tetra3_xyls](#About-MyTest_Tetra3_xyls)
+	- [About Main.m](#About-Main.m)
 - [Customize Your Own Database](#Customize-Your-Own-Database)
 	- [Generate Trimmed Star Table](#Generate-Trimmed-Star-Table)
 	- [Generate Database](#Generate-Database)
@@ -31,7 +31,7 @@ Also, the Hipparcos catalog is also available in the catalog directory. (pending
 
 3. In the current version, the required files have been saved in the corresponding directory. In other words, you can run [MyTest_Tetra3_xyls.py](https://github.com/CoFFeeSooDa/StarTrackerTest/blob/main/MyTest_Tetra3_xyls.py) directly to test tetra3.
 
-### About MyTest_Tetra3_xyls
+### About Main.m
 
 The script provides four different tests:
 1. Continuous test for ideal star centroids in a boresight with a specific FOV. The boresight is determined randomly.
