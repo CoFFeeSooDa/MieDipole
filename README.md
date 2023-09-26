@@ -14,7 +14,7 @@ This repository contains:
 
 - [Installation and Usage](#Installation-and-Usage)
 	- [About Main.m](#About-Main.m)
-- [Customize Your Own Database](#Customize-Your-Own-Database)
+- [How to Set a Input File](#How-to-Set-a-Input-File)
 	- [Generate Trimmed Star Table](#Generate-Trimmed-Star-Table)
 	- [Generate Database](#Generate-Database)
 - [Others](#Others)
@@ -27,43 +27,118 @@ This repository contains:
 git clone https://github.com/CoFFeeSooDa/MieDipole.git
 ```
 2. After the download, you can start a calculation in MATLAB (2016a and after is recommended).
-Also, the Hipparcos catalog is also available in the catalog directory. (pending)
 
-3. In the current version, the required files have been saved in the corresponding directory. In other words, you can run [MyTest_Tetra3_xyls.py](https://github.com/CoFFeeSooDa/StarTrackerTest/blob/main/MyTest_Tetra3_xyls.py) directly to test tetra3.
 
 ### About Main.m
+Main.m starts a calculation by reading a JSON file in lines 22-23,
+```
+FilePath = './InputFiles/'; % Folder Path of Input Files
+FileName = 'Demo_WavelengthMode_CF_PCRET'; % File Name
+```
+![](https://hackmd.io/_uploads/r1IwsGgga.png)
 
-The script provides four different tests:
-1. Continuous test for ideal star centroids in a boresight with a specific FOV. The boresight is determined randomly.
-2. Continuous test for ideal star centroids plus random pixel deviations, where we randomly assigned the pixel deviation and the target stars. The boresight is determined randomly.
-3. Continuous test for ideal star centroids with additional distractors in a boresight with a specific FOV. The boresight is determined randomly.
-4. Continuous test for ideal star centroids and delete stars randomly in a boresight with a specific FOV. The boresight is determined randomly.
 
-```python
-mode = 'continue_table' # 'continue_table', 'continue_table_devi', 'continue_table_addstar', and 'continue_table_delstar'
+
+##  How to Set a Input File
+
+To customize your own calculation, you can establish your settings in a JSON file. Here are some examples to demostrate what you can do in this program.
+
+A standard JSON input file comprises three main objects, "Settings", "tmp_set" and "fplot". The first object defines the geometry of a system.
+```json
+"Settings" : {
+	  "ModeName"   : "wavelength",  
+	  "Quantity"   : "CF",          
+	  "DPos"	   : {
+		  "Cart"   : [0, 0, 80e-9]
+	  },
+	  "APos"	   : {
+		  "Cart"   : [0, 0, -80e-9]
+	  },
+	  "DOri"	   : {
+		  "Cart"   : [0, 0, 1]
+	  },
+	  "AOri"	   : {
+		  "Cart"   : [0, 0, 1]
+	  },
+	  "nmax"	   : 70,
+	  "BC"		   : "coreshell",
+	  "rbc"		   : [70e-9,60e-9],
+	  "Dpstrength" : 1
+    }
 ```
 
-Moreover, the ideal star centroids are calculated by the trimmed star table which can be found in ./trimmed_table/*.mat.
-To specify a trimmed star table, please change the following variable.
-```python
-read_mat_file = './trimmed_table/tycho2-Vmag06.mat'
+The second object defines dielectric properties of the space,
+```json
+"tmp_set"	 : {
+	  "mode"	   : "Auto",
+	  "lambda_s"   : 300e-9,
+	  "lambda_e"   : 700e-9,
+	  "epsi0"	   : 1,
+	  "epsi1"	   : 4,
+	  "epsi2"	   : ".\\InputFiles\\DielectricFunctions\\Ag_JPCL.csv"
+    }
+```
+The third object defines the format of the output figures,
+```json
+"fplot"	 : {
+	  "colorstyle" : "-k",
+	  "range" 	   : [null,null,null,null],
+	  "yscale"     : "log",
+	  "xlabel"	   : "$\\mathrm{Wavenumber}~(\\mathrm{cm}^{-1})$",
+	  "ylabel"	   : "$\\mathrm{Coupling~Factor}~(\\mathrm{cm}^{-6})$",
+	  "subaxis"    : 1,
+	  "subrange"   : [null,null,null,null],
+	  "subxlabel"  : "$\\mathrm{Wavelength}~(\\mathrm{nm})$"
+    }	  
 ```
 
+### Demo_WavelengthMode_CF_PCRET
 
-##  Customize Your Own Database
+In this JSON file, we calculate the coupling factor of a Ag core-shell sphere sandwiched by a donor and acceptor dipole.
 
-To customize your own database for a specific use, you need to load a star catalog first. However, a star catalog is usually huge. 
-Here I provide a script to trim the star catalog (Tycho-2) and extract the required information for the built database later.
-
-### Generate Trimmed Star Table
-
-You can create your customized trimmed star table (.mat files) using [Star_Catalog_to_mat.py](https://github.com/CoFFeeSooDa/StarTrackerTest/blob/main/Star_Catalog_to_mat.py). This script reads a star catalog (in ./catalogs) and trim the stars by setting the maximum Vmag. In the current version, the Tycho-2 catalog is available. 
-In the script, please feel free to change the maximal magnitude (Johnson V filter) and the name of saved .mat file.
-```python
-star_max_magnitude = 6
-s_name = f'tycho2-Vmag{star_max_magnitude:02d}.mat'
+The JSON file reads
+```json
+{
+  "Settings" : {
+	  "ModeName"   : "wavelength",
+	  "Quantity"   : "CF",
+	  "DPos"	   : {
+		  "Cart"   : [0, 0, 80e-9]
+	  },
+	  "APos"	   : {
+		  "Cart"   : [0, 0, -80e-9]
+	  },
+	  "DOri"	   : {
+		  "Cart"   : [0, 0, 1]
+	  },
+	  "AOri"	   : {
+		  "Cart"   : [0, 0, 1]
+	  },
+	  "nmax"	   : 70,
+	  "BC"		   : "coreshell",
+	  "rbc"		   : [70e-9,60e-9],
+	  "Dpstrength" : 1
+    },
+  "tmp_set"	 : {
+	  "mode"	   : "Auto",
+	  "lambda_s"   : 300e-9,
+	  "lambda_e"   : 700e-9,
+	  "epsi0"	   : 1,
+	  "epsi1"	   : 4,
+	  "epsi2"	   : ".\\InputFiles\\DielectricFunctions\\Ag_JPCL.csv"
+    },
+  "fplot"	 : {
+	  "colorstyle" : "-k",
+	  "range" 	   : [null,null,null,null],
+	  "yscale"     : "log",
+	  "xlabel"	   : "$\\mathrm{Wavenumber}~(\\mathrm{cm}^{-1})$",
+	  "ylabel"	   : "$\\mathrm{Coupling~Factor}~(\\mathrm{cm}^{-6})$",
+	  "subaxis"    : 1,
+	  "subrange"   : [null,null,null,null],
+	  "subxlabel"  : "$\\mathrm{Wavelength}~(\\mathrm{nm})$"
+    }	  
+}
 ```
-Further information about the [Tycho-2 catalog](https://cdsarc.u-strasbg.fr/ftp/cats/I/259/) can be found in ./catalog/tycho2/README.md.
 
 ### Generate Database
 
