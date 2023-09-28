@@ -20,7 +20,7 @@ clear
 addpath('./Functions/');												
 % File to be Calculated
 FilePath = './InputFiles/'; % Folder Path of Input Files
-FileName = 'Demo_WavelengthMode_CF_PCRET'; % File Name
+FileName = 'Demo_MappingMode_CF_coreshell'; % File Name
 
 
 % Output Figure Size (value = 0~1)
@@ -297,11 +297,11 @@ elseif strcmp(Settings.ModeName,'mapping') == 1
     % Electric Field Intensity (Spheres)
     EFI = vecnorm(EtotSI,2,2).^2;
     % Reshape the Array
-    EFImap = reshape(EFI,size(Az));
+    EFImap = reshape(EFI,Settings.shape);
     % Electric Field Intensity (Vacuum)
     EFIdip = vecnorm(Edip,2,2).^2;
     % Reshape the Array
-    EFIdipmap = reshape(EFIdip,size(Az));
+    EFIdipmap = reshape(EFIdip,Settings.shape);
 end
 
 %% Plotting Figures
@@ -345,7 +345,7 @@ elseif strcmp(Settings.ModeName,'angle') == 1
 elseif strcmp(Settings.ModeName,'mapping') == 1
     if strcmp(Settings.Quantity,'CF') == 1
         figure
-        contourf(Ax*1e9,Az*1e9,log10(EFImap),300,'linestyle','none');
+        contourf(Settings.plotx*1e9,Settings.ploty*1e9,log10(EFImap),300,'linestyle','none');
         colormap jet
         colorbar
         hold on
@@ -354,7 +354,7 @@ elseif strcmp(Settings.ModeName,'mapping') == 1
         plot(x*1e9,-y*1e9,'-k','linewidth',2);
         plot(x*1e9,y*1e9,'-k','linewidth',2);
         figure
-        contourf(Ax*1e9,Az*1e9,log10(EFIdipmap),300,'linestyle','none');
+        contourf(Settings.plotx*1e9,Settings.ploty*1e9,log10(EFIdipmap),300,'linestyle','none');
         colormap jet
         colorbar
         hold on

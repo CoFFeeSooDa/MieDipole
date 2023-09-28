@@ -134,35 +134,25 @@ elseif strcmp(Settings.ModeName,'angle') == 1
         nr(3) = sqrt(Interpolation(lambda,lambda2,epsi2));
     end
 elseif strcmp(Settings.ModeName,'mapping') == 1
-    Settings.shape = [tmp_set.x_points,tmp_set.y_points];
     % Acceptor dipole
     xgrid = linspace(tmp_set.x_start,tmp_set.x_end,tmp_set.x_points);
     ygrid = linspace(tmp_set.y_start,tmp_set.y_end,tmp_set.y_points);
     if strcmp(tmp_set.plane,'xz') == 1
         [Ax,Az] = meshgrid(xgrid,ygrid);
-        Settings.plotx = Ax;
-        Settings.ploty = Az;
+        Ay = 0;
         
         AxReshape = reshape(Ax,[1,numel(Ax)]);
-        AyReshape = tmp_set.third_coord*ones([1,numel(Ax)]);
+        AyReshape = Ay*ones([1,numel(Ax)]);
         AzReshape = reshape(Az,[1,numel(Az)]);
     elseif strcmp(tmp_set.plane,'xy') == 1
-        [Ax,Ay] = meshgrid(xgrid,ygrid);
-        Settings.plotx = Ax;
-        Settings.ploty = Ay;
+        [Ax,Az] = meshgrid(xgrid,ygrid);
+        Ay = 0;
         
         AxReshape = reshape(Ax,[1,numel(Ax)]);
-        AyReshape = reshape(Ay,[1,numel(Ay)]);
-        AzReshape = tmp_set.third_coord*ones([1,numel(Ax)]);
-    elseif strcmp(tmp_set.plane,'yz') == 1
-        [Ay,Az] = meshgrid(xgrid,ygrid);
-        Settings.plotx = Ay;
-        Settings.ploty = Az;
-
-        AxReshape = tmp_set.third_coord*ones([1,numel(Ay)]);
-        AyReshape = reshape(Ay,[1,numel(Ay)]);
+        AyReshape = Ay*ones([1,numel(Ax)]);
         AzReshape = reshape(Az,[1,numel(Az)]);
-    end
+    
+    
 
     Settings.APos.Cart = [AxReshape;AyReshape;AzReshape];
     if tmp_set.lambda_i == tmp_set.lambda_f

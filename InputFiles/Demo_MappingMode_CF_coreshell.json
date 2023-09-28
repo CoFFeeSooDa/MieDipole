@@ -1,36 +1,33 @@
 {
   "Settings" : {
-	  "ModeName"   : "angle",
+	  "ModeName"   : "mapping",
 	  "Quantity"   : "CF",
 	  "DPos"	   : {
 		  "Cart"   : [0, 0, 80e-9]
 	  },
-	  "APos"	   : {
-		  "Cart"   : [0, 0, -80e-9]
-	  },
 	  "DOri"	   : {
-		  "Cart"   : [0, 0, 1]
-	  },
-	  "AOri"	   : {
 		  "Cart"   : [0, 0, 1]
 	  },
 	  "nmax"	   : 50,
 	  "BC"		   : "coreshell",
-	  "rbc"		   : [70e-9,60e-9],
+	  "rbc"		   : [60e-9,50e-9],
 	  "Dpstrength" : 1
     },
   "tmp_set"	 : {
 	  "mode"	   : "Auto",
-	  "lambda_i"   : 405e-9,
-	  "lambda_f"   : 405e-9,
+	  "lambda_i"   : 410e-9,
+	  "lambda_f"   : 410e-9,
 	  "epsi0"	   : 1,
 	  "epsi1"	   : 4,
 	  "epsi2"	   : ".\\InputFiles\\DielectricFunctions\\Ag_JPCL",
-	  "ThetaResol" : 1,
-	  "Theta_i"    : 5,
-	  "Theta_f"    : 180,
-	  "Ar"         : 80e-9,
-	  "Phi"        : 0
+	  "x_points"   : 101,
+	  "x_start"    : -300e-9,
+	  "x_end"      :  300e-9,
+	  "y_points"   : 101,
+	  "y_start"    : -300e-9,
+	  "y_end"      :  300e-9,
+	  "plane"      : "xz",
+	  "third_coord": 0
     },
   "fplot"	 : {
 	  "colorstyle" : "-k",
