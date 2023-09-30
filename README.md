@@ -94,15 +94,15 @@ Currently, ```CF``` (coupling factor, the definition can be found in [here](http
 	  "lambda_e"   : 700e-9,
 	  "epsi0"      : 1,
 	  "epsi1"      : 4,
-	  "epsi2"      : ".\\InputFiles\\DielectricFunctions\\Ag_JPCL.csv"
-    //(for angle mode only)-----------------------------------------------
-      "ThetaResol" : 1,
+	  "epsi2"      : ".\\InputFiles\\DielectricFunctions\\Ag_JPCL.csv",
+    \\(for angle mode only)-----------------------------------------------
+          "ThetaResol" : 1,
 	  "Theta_i"    : 5,
 	  "Theta_f"    : 180,
 	  "Ar"         : 80e-9,
-	  "Phi"        : 0
-    //(for mapping mode only)---------------------------------------------
-      "x_points"   : 101,
+	  "Phi"        : 0,
+    \\(for mapping mode only)---------------------------------------------
+          "x_points"   : 101,
 	  "x_start"    : -300e-9,
 	  "x_end"      :  300e-9,
 	  "y_points"   : 101,
