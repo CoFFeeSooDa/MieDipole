@@ -113,7 +113,7 @@ elseif strcmp(Settings.ModeName,'angle') == 1
     Theta_num = abs(tmp_set.Theta_f - tmp_set.Theta_i)/tmp_set.ThetaResol + 1;
     R = tmp_set.Ar*ones(1,Theta_num);
     Theta = pi*linspace(tmp_set.Theta_i,tmp_set.Theta_f,Theta_num)/180;
-    Phi = tmp_set.Phi*ones(1,Theta_num);
+    Phi = tmp_set.Phi/180*pi*ones(1,Theta_num);
     Settings.APos.Cart = [tmp_set.Ar*sin(Theta)*cos(tmp_set.Phi);...
                           tmp_set.Ar*sin(Theta)*sin(tmp_set.Phi);...
                           tmp_set.Ar*cos(Theta)];
