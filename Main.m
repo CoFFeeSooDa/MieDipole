@@ -20,7 +20,7 @@ clear
 addpath('./Functions/');												
 % File to be Calculated
 FilePath = './InputFiles/'; % Folder Path of Input Files
-FileName = 'Demo_MappingMode_CF_coreshell'; % File Name
+FileName = 'JPCL_11_6796(2020)/Figure5i'; % File Name
 
 
 % Output Figure Size (value = 0~1)
@@ -186,6 +186,7 @@ else
     Etot = zeros(Settings.nn,3);
     NormEtot = zeros(Settings.nn,3);
     Edip = zeros(Settings.nn,3);
+    EtotSI = zeros(Settings.nn,3);
 end
 
 %% Main Loop
@@ -311,14 +312,23 @@ if strcmp(Settings.ModeName,'wavelength') == 1
         fplot.y = CF*1e-12;
         MyPlot(fplot,Resize,0);
         fplot.y = CFdip*1e-12;
-        fplot.colorstyle = 'b--';
+        fplot.colorstyle = 'r-';
         MyPlot(fplot,Resize,1);
-        legend({'Ag/Dielectric Sphere','Vacuum (QED)'},'interpreter','latex');
+        if strcmp(Settings.BC,'sphere') == 1
+            legend({'Single Sphere','Vacuum (QED)'},'interpreter','latex');
+        elseif strcmp(Settings.BC,'coreshell') == 1
+            legend({'Core/Shell Sphere','Vacuum (QED)'},'interpreter','latex');
+        end
         fplot.y = EF;
-        fplot.colorstyle = 'k-';
-        fplot.range = [-inf,inf,1e-2,1e5];
+        fplot.colorstyle = '-';
+        fplot.range = [-inf,inf,1e-3,1e5];
         fplot.ylabel = 'Enhancement';
         MyPlot(fplot,Resize,0);
+        if strcmp(Settings.BC,'sphere') == 1
+            legend({'Single Sphere'},'interpreter','latex');
+        elseif strcmp(Settings.BC,'coreshell') == 1
+            legend({'Core/Shell Sphere'},'interpreter','latex');
+        end
     elseif strcmp(Settings.Quantity,'Purcell') == 1
 %         fplot.x = 1./lambda*1e4;
         fplot.x = 1239.84193./(lambda*1e9);
