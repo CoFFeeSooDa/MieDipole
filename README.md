@@ -35,8 +35,7 @@ Main.m starts a calculation by reading a JSON file in lines 22-23,
 FilePath = './InputFiles/'; % Folder Path of Input Files
 FileName = 'Demo_WavelengthMode_CF_PCRET'; % File Name
 ```
-![](https://hackmd.io/_uploads/r1IwsGgga.png)
-
+![](https://i.imgur.com/ogu2RwZ.png)
 
 
 ##  How to Set a Input File
