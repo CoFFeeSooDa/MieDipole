@@ -1,6 +1,6 @@
 # Generalized Mie Theory - Electric Dipole Source
 
-[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)\
+[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
 This MATLAB code calculates electromagnetic properties for a spherical scatterer illuminated by an electric dipole source based on the [Mie theory](https://en.wikipedia.org/wiki/Mie_scattering).
 
@@ -18,7 +18,7 @@ This repository contains:
 
 - [Installation and Usage](#Installation-and-Usage)
 	- [About Main.m](#About-Main.m)
-- [How to Set a Input File](#How-to-Set-a-Input-File)
+- [How to Set an Input File](#How-to-Set-an-Input-File)
 	- [First Part](#First-Part)
 	- [Second Part](#Second-Part)
 	- [Third Part](#Third-Part)
@@ -27,7 +27,7 @@ This repository contains:
 
 ## Installation and Usage
 
-1. To use this code, you can either download the zipped file or clone the repository (you need to install Git in your PC first).
+1. To use this code, you can either download the zipped file or clone the repository (you need to install Git on your PC first).
 ```sh
 git clone https://github.com/CoFFeeSooDa/MieDipole.git
 ```
@@ -44,9 +44,9 @@ FileName = 'Demo_WavelengthMode_CF_PCRET'; % File Name
 
 
 
-##  How to Set a Input File
+##  How to Set an Input File
 
-To customize your own calculation, you can establish your settings in a JSON file. Here are some examples to demostrate what you can do in this program.
+To customize your own calculation, you can establish your settings in a JSON file. Here are some examples to demonstrate what you can do in this program.
 
 A standard JSON input file comprises three main objects, "Settings", "tmp_set" and "fplot".
 
@@ -75,14 +75,14 @@ A standard JSON input file comprises three main objects, "Settings", "tmp_set" a
     }
 ```
 1. ```ModeName```: sets the calculation type.
-Currently, the code supports the following types: ```wavelength``` , ```angle``` and ```mapping```. In the ```wavelength``` mode, the program sweeps the wavelength (wavenumber) of the donor dipole; in the ```angle``` mode, the program sweeps the position of acceptor dipole, which is decribed by $\theta$; in the ```mapping``` mode, the program plot the mapping of a specific plane (see also ```tmp_set```).
+Currently, the code supports the following types: ```wavelength``` , ```angle``` and ```mapping```. In the ```wavelength``` mode, the program sweeps the wavelength (wavenumber) of the donor dipole; in the ```angle``` mode, the program sweeps the position of the acceptor dipole, which is described by $\theta$; in the ```mapping``` mode, the program plot the mapping of a specific plane (see also ```tmp_set```).
 2. ```Quantity```: specifies the quantity presented in the figures. 
-Currenty, ```CF``` (coupling factor, the definition can be found in [here](https://pubs.acs.org/doi/full/10.1021/acs.jpclett.0c01989)) and ```Purcell```(Purcell factor, the enhancement of spontaneous emission) are available.
+Currently, ```CF``` (coupling factor, the definition can be found in [here](https://pubs.acs.org/doi/full/10.1021/acs.jpclett.0c01989)) and ```Purcell```(Purcell factor, the enhancement of spontaneous emission) are available.
 3. ```DPos```(```APos```): sets the position of the donor (acceptor) dipole.(unit: meter)
 4. ```DOri```(```AOri```): set the orientation of the donor (acceptor) dipole. (dimensionless, be sure that it is normalized)
 5. ```nmax```: the highest expansion order in a calculation.
 6. ```BC```: the boundary condition --- ```single``` or ```coreshell```.
-7. ```rbc```: the radius of a single (coreshell) sphere (descending order)
+7. ```rbc```: the radius of a single (core/shell) sphere (descending order)
 8. ```Dpstrength```: the strength of the donor dipole (Unit: cgs)
 
 ### **Second Part**
@@ -124,11 +124,11 @@ Currenty, ```CF``` (coupling factor, the definition can be found in [here](https
 10. ```Ar```: the $r$ of the acceptor dipole (unit: m)
 11. ```Phi```: the $\phi$ of the acceptor dipole (unit: degree)
 12. ```x_points```: the number of grid points along x axis.
-13. ```x_start```: the starting point of x axis (unit: m)
-14. ```x_end```: the end point of x axis (unit: m)
-15. ```y_points```: the number of grid points along y axis.
-16. ```y_start```: the starting point of y axis (unit: m)
-17. ```y_end```: the end point of y axis (unit: m)
+13. ```x_start```: the starting point of the x-axis (unit: m)
+14. ```x_end```: the endpoint of the x-axis (unit: m)
+15. ```y_points```: the number of grid points along the y-axis.
+16. ```y_start```: the starting point of the y-axis (unit: m)
+17. ```y_end```: the endpoint of the y-axis (unit: m)
 
 
 ### **Third Part**
