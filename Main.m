@@ -20,7 +20,7 @@ clear
 addpath('./Functions/');												
 % File to be Calculated
 FilePath = './InputFiles/'; % Folder Path of Input Files
-FileName = 'JPCL_11_6796(2020)/Figure5i'; % File Name
+FileName = 'Demo_WavelengthMode_CF_coreshell'; % File Name
 
 
 % Output Figure Size (value = 0~1)

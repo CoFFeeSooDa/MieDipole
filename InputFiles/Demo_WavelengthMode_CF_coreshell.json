@@ -9,10 +9,10 @@
 		  "Cart"   : [0, 0, -80e-9]
 	  },
 	  "DOri"	   : {
-		  "Cart"   : [0, 0, 1]
+		  "Cart"   : [1, 0, 0]
 	  },
 	  "AOri"	   : {
-		  "Cart"   : [0, 0, 1]
+		  "Cart"   : [1, 0, 0]
 	  },
 	  "nmax"	   : 70,
 	  "BC"		   : "coreshell",

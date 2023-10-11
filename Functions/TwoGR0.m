@@ -94,6 +94,7 @@ function Output = TwoGR0(Settings)
     Output.Edip =  Settings.EdipS1;
     % Etot / Edip
     Output.NEtot = Output.Etot./Settings.EdipS1;
+    Output.NEtot(isinf(Output.NEtot)) = 0;
     % Other Additional Outputs
         % Note: Feel Free to Add What You Want!
         % Use the Structure Array to Output Data
